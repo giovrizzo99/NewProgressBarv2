@@ -5,7 +5,7 @@
       :host {
           display: block;
           width: 100%;
-          height: 50px; /* Default height, can be changed dynamically */
+          height: 50px; /* Adjust as needed */
           position: relative;
       }
 
@@ -68,28 +68,19 @@
     updateProgress() {
       const progressBar = this.shadowRoot.querySelector(".progress-bar");
       const progressIndicator = this.shadowRoot.querySelector(".progress-indicator");
-      const container = this.shadowRoot.querySelector(".progress-container");
 
       // Get values from properties or use defaults
       const percentage = this._props.percentage || 50;
       const emptyBarColor = this._props.emptyBarColor || "#a9b4be";
 
       // Apply styles
-      container.style.backgroundColor = emptyBarColor;
+      this.shadowRoot.querySelector(".progress-container").style.backgroundColor = emptyBarColor;
       progressBar.style.width = `${percentage}%`;
       progressIndicator.textContent = `${percentage}%`;
 
-      // Get actual height (which is also the width of the circle)
-      const circleSize = container.style.height; // Since height = width for the circle
-
-      // Adjust percentage so that the **center** of the circle never moves beyond half its size
-      const adjustedPercentage = Math.max(
-        (circleSize / 2) / container.style.height * 100,  // Minimum percentage (half circle width)
-        Math.min(percentage, 100 - (circleSize / 2) / container.style.width * 100) // Max percentage
-      );
-
-      // Move the circle
-      progressIndicator.style.left = `${adjustedPercentage}%`;
+      // Clamp position between 10% and 90%
+      const adjustedPercentage = Math.min(90, Math.max(10, percentage));
+      progressIndicator.style.left = `calc(${adjustedPercentage}% - ${progressIndicator.offsetWidth / 2}px)`;
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
@@ -101,5 +92,5 @@
     }
   }
 
-  customElements.define("com-gr-sap-newprogressbar", ProgressBarWidget);
+  customElements.define("com-gr-sap-progressbar", ProgressBarWidget);
 })();
