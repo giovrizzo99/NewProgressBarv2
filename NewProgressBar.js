@@ -1,96 +1,92 @@
 (function () {
-  let template = document.createElement("template");
-  template.innerHTML = `
+    let template = document.createElement("template");
+    template.innerHTML = `
     <style>
-      :host {
-          display: block;
-          width: 100%;
-          height: 50px; /* Adjust as needed */
-          position: relative;
-      }
+        :host {
+            display: block;
+            width: 100%;
+            height: 30px;
+            position: relative;
+        }
 
-      .progress-container {
-          width: 100%;
-          height: 100%;
-          background-color: var(--emptyBarColor, #a9b4be);
-          border-radius: 25px;
-          position: relative;
-          overflow: hidden;
-      }
+        .progress-container {
+            width: 100%;
+            height: 100%;
+            background-color: var(--empty-bar-color, #e0e0e0);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
 
-      .progress-bar {
-          height: 100%;
-          background: linear-gradient(to right, #05446b, #69a8e2);
-          width: 50%; /* Default value, updated dynamically */
-          border-radius: 25px;
-          transition: width 0.5s ease-in-out;
-      }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #05446b, #69a8e2);
+            transition: width 0.5s ease-in-out;
+        }
 
-      .progress-indicator {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: auto;
-          aspect-ratio: 1 / 1; /* Ensures it's a circle */
-          border-radius: 50%;
-          background-color: #05446b;
-          border: 3px solid #69a8e2;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 14px;
-          font-weight: bold;
-          white-space: nowrap;
-          padding: 0 10px;
-          transition: left 0.5s ease-in-out;
-      }
+        .progress-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: #05446b; /* Dark blue inside */
+            border: 3px solid #69a8e2; /* Light blue border */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 
     <div class="progress-container">
-      <div class="progress-bar"></div>
-      <div class="progress-indicator">50%</div>
+        <div class="progress-bar"></div>
+        <div class="progress-indicator">0%</div>
     </div>
-  `;
+    `;
 
-  class ProgressBarWidget extends HTMLElement {
-    constructor() {
-      super();
-      let shadowRoot = this.attachShadow({ mode: "open" });
-      shadowRoot.appendChild(template.content.cloneNode(true));
-      this._props = {};
+    class StraightProgressBar extends HTMLElement {
+        constructor() {
+            super();
+            let shadowRoot = this.attachShadow({ mode: "open" });
+            shadowRoot.appendChild(template.content.cloneNode(true));
+            this._props = {};
+        }
+
+        async connectedCallback() {
+            this.updateProgress();
+        }
+
+        async updateProgress() {
+            const progressBar = this.shadowRoot.querySelector(".progress-bar");
+            const progressIndicator = this.shadowRoot.querySelector(".progress-indicator");
+
+            const percentage = this._props.percentage || 50;
+            const emptyBarColor = this._props.emptyBarColor || "#e0e0e0";
+
+            progressBar.style.width = `${percentage}%`;
+            progressBar.style.background = "linear-gradient(90deg, #05446b, #69a8e2)";
+            this.shadowRoot.querySelector(".progress-container").style.backgroundColor = emptyBarColor;
+            
+            progressIndicator.innerText = `${percentage}%`;
+            progressIndicator.style.left = `calc(${percentage}% - 0px)`; /* Center aligns exactly */
+
+        }
+
+        onCustomWidgetBeforeUpdate(changedProperties) {
+            this._props = { ...this._props, ...changedProperties };
+        }
+
+        onCustomWidgetAfterUpdate(changedProperties) {
+            this.updateProgress();
+        }
     }
 
-    connectedCallback() {
-      this.updateProgress();
-    }
-
-    updateProgress() {
-      const progressBar = this.shadowRoot.querySelector(".progress-bar");
-      const progressIndicator = this.shadowRoot.querySelector(".progress-indicator");
-
-      // Get values from properties or use defaults
-      const percentage = this._props.percentage || 50;
-      const emptyBarColor = this._props.emptyBarColor || "#a9b4be";
-
-      // Apply styles
-      this.shadowRoot.querySelector(".progress-container").style.backgroundColor = emptyBarColor;
-      progressBar.style.width = `${percentage}%`;
-      progressIndicator.textContent = `${percentage}%`;
-
-      // Clamp position between 10% and 90%
-      const adjustedPercentage = Math.min(90, Math.max(10, percentage));
-      progressIndicator.style.left = `calc(${adjustedPercentage}% - ${progressIndicator.offsetWidth / 2}px)`;
-    }
-
-    onCustomWidgetBeforeUpdate(changedProperties) {
-      this._props = { ...this._props, ...changedProperties };
-    }
-
-    onCustomWidgetAfterUpdate(changedProperties) {
-      this.updateProgress();
-    }
-  }
-
-  customElements.define("com-gr-sap-progressbar", ProgressBarWidget);
+    customElements.define("com-gr-newprogressbar", StraightProgressBar);
 })();
