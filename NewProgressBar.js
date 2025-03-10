@@ -89,7 +89,7 @@
       );
 
       // Move the circle
-      progressIndicator.style.left = `calc(${adjustedPercentage}% - ${circleSize / 2}px)`;
+      progressIndicator.style.left = `${adjustedPercentage}%`;
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
