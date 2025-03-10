@@ -71,7 +71,7 @@
       const container = this.shadowRoot.querySelector(".progress-container");
 
       // Get values from properties or use defaults
-      const percentage = this._props.percentage || 0;
+      const percentage = this._props.percentage || 50;
       const emptyBarColor = this._props.emptyBarColor || "#a9b4be";
 
       // Apply styles
