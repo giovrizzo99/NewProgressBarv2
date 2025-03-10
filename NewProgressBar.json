@@ -24,7 +24,8 @@
         "percentage": {
             "description": "Percentage",
             "type": "integer",
-            "default": 50
+            "default": 
+            0
         },
         "barColor": {
             "description": "Bar Color",
