@@ -8,14 +8,14 @@
         {
             "kind": "main",
             "tag": "com-gr-newprogressbar",
-            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@latest\/NewProgressBar.js",
+            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBarv2@main\/NewProgressBar.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
         {
             "kind": "builder",
             "tag": "com-gr-newprogressbar-builder",
-            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@latest\/NewProgressBar_Builder.js",
+            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBarv2@main\/NewProgressBar_Builder.js",
             "integrity": "",
             "ignoreIntegrity": true
         }
