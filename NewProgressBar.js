@@ -68,6 +68,13 @@
             const progressIndicator = this.shadowRoot.querySelector(".progress-indicator");
 
             const percentage = this._props.percentage || 50;
+            if(percentage < 10 ){
+                const adjperc = 10;
+            } else if (percentage > 90){
+                const adjperc = 90;
+            } else{
+                const adjperc = percentage;
+            }
             const emptyBarColor = this._props.emptyBarColor || "#e0e0e0";
 
             progressBar.style.width = `${percentage}%`;
@@ -75,7 +82,7 @@
             this.shadowRoot.querySelector(".progress-container").style.backgroundColor = emptyBarColor;
             
             progressIndicator.innerText = `${percentage}%`;
-            progressIndicator.style.left = `calc(${percentage}% - 0px)`; /* Center aligns exactly */
+            progressIndicator.style.left = `calc(${adjperc}% - 0px)`; /* Center aligns exactly */
 
         }
 
