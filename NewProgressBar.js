@@ -80,12 +80,12 @@
       progressIndicator.textContent = `${percentage}%`;
 
       // Get actual height (which is also the width of the circle)
-      const circleSize = container.clientHeight; // Since height = width for the circle
+      const circleSize = container.style.height; // Since height = width for the circle
 
       // Adjust percentage so that the **center** of the circle never moves beyond half its size
       const adjustedPercentage = Math.max(
-        (circleSize / 2) / container.clientWidth * 100,  // Minimum percentage (half circle width)
-        Math.min(percentage, 100 - (circleSize / 2) / container.clientWidth * 100) // Max percentage
+        (circleSize / 2) / container.style.height * 100,  // Minimum percentage (half circle width)
+        Math.min(percentage, 100 - (circleSize / 2) / container.style.width * 100) // Max percentage
       );
 
       // Move the circle
