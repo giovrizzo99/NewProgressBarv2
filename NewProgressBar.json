@@ -1,6 +1,6 @@
 {
     "id": "com.gr.sap.newprogressbar",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "New Progress Bar",
     "description": "New Progress Bar",
     "newInstancePrefix": "NewProgressBar",
@@ -8,14 +8,14 @@
         {
             "kind": "main",
             "tag": "com-gr-newprogressbar",
-            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@main\/NewProgressBar.js",
+            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@latest\/NewProgressBar.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
         {
             "kind": "builder",
             "tag": "com-gr-newprogressbar-builder",
-            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@main\/NewProgressBar_Builder.js",
+            "url": "https:\/\/cdn.jsdelivr.net\/gh\/giovrizzo99\/NewProgressBar@latest\/NewProgressBar_Builder.js",
             "integrity": "",
             "ignoreIntegrity": true
         }
@@ -24,7 +24,7 @@
         "percentage": {
             "description": "Percentage",
             "type": "integer",
-            "default": 50
+            "default": 0
         },
         "barColor": {
             "description": "Bar Color",
