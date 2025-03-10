@@ -68,12 +68,12 @@
             const progressIndicator = this.shadowRoot.querySelector(".progress-indicator");
 
             const percentage = this._props.percentage || 50;
-            if(percentage < 10 ){
-                const adjperc = 10;
-            } else if (percentage > 90){
-                const adjperc = 90;
-            } else{
-                const adjperc = percentage;
+            var adjperc = percentage;
+            if(adjperc < 10 ){
+                adjperc = 10;
+            } 
+            if(adjperc > 90){
+                adjperc = 90;
             }
             const emptyBarColor = this._props.emptyBarColor || "#e0e0e0";
 
