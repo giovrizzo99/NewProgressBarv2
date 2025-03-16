@@ -4,6 +4,7 @@
     "name": "New Progress Bar",
     "description": "New Progress Bar",
     "newInstancePrefix": "NewProgressBar",
+    "supportsMobile": true,
     "webcomponents": [
         {
             "kind": "main",
