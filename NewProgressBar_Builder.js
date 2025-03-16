@@ -78,6 +78,18 @@
                     <input id="builder_emptyBarColor" type="color" placeholder="Select Empty Bar Color">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p>Start Gradient Color</p>
+                    <input id="builder_startColor" type="color" placeholder="Select Start Color">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>End Gradient Color</p>
+                    <input id="builder_endColor" type="color" placeholder="Select End Color">
+                </td>
+            </tr>
         </table>
         <input value="Update Settings" type="submit">
         <br>
@@ -98,7 +110,9 @@
                 detail: {
                     properties: {
                         percentage: this.percentage,
-                        emptyBarColor: this.emptyBarColor
+                        emptyBarColor: this.emptyBarColor,
+                        startColor: this.startColor,
+                        endColor: this.endColor
                     },
                 },
             }));
@@ -116,6 +130,20 @@
         }
         get emptyBarColor() {
             return this._shadowRoot.getElementById("builder_emptyBarColor").value;
+        }
+
+        set startColor(value) {
+            this._shadowRoot.getElementById("builder_startColor").value = value;
+        }
+        get startColor() {
+            return this._shadowRoot.getElementById("builder_startColor").value;
+        }
+
+        set endColor(value) {
+            this._shadowRoot.getElementById("builder_endColor").value = value;
+        }
+        get endColor() {
+            return this._shadowRoot.getElementById("builder_endColor").value;
         }
     }
 
