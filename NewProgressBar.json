@@ -1,6 +1,6 @@
 {
     "id": "com.gr.sap.newprogressbar",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "name": "New Progress Bar",
     "description": "New Progress Bar",
     "newInstancePrefix": "NewProgressBar",
