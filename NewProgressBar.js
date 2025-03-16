@@ -12,7 +12,7 @@
         .progress-container {
             width: 100%;
             height: 100%;
-            background-color: var(--empty-bar-color, #e0e0e0);
+            background-color: var(--empty-bar-color, #f0f0f0);
             border-radius: 5px;
             overflow: hidden;
             position: relative;
@@ -96,7 +96,8 @@
             this.shadowRoot.querySelector(".progress-container").style.backgroundColor = emptyBarColor;
             progressIndicator.innerText = `${percentage}%`;
             progressIndicator.style.left = `${adjperc}%`;
-            progressIndicator.style.backgroundColor = barColor;
+            progressIndicator.style.backgroundColor = startColor;
+            progressIndicator.style.borderColor = endColor;
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
