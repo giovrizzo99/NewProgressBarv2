@@ -108,5 +108,5 @@
         }
     }
 
-    customElements.define("com-gr-progressbarround", StraightProgressBar);
+    customElements.define("com-gr-newprogressbar", StraightProgressBar);
 })();
